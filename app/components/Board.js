@@ -7,14 +7,17 @@ export class Board extends React.Component {
 	constructor (props) {
 		super(props);
 
+		this.state = {
+			sort: 'alltime'
+		}
+
 		this.click = this.click.bind(this);
 	}
 
-	click (e, sort) {
+	click (sort) {
 
-		if(!(e.target.classList).contains(styles.sorted)) {
-			document.getElementsByClassName(styles.sorted)[0].classList.remove(styles.sorted);
-			e.target.classList.add(styles.sorted);
+		if(this.state.sort != sort) {
+			this.setState({sort: sort});
 			this.props.onclick(sort);
 		}
 		
@@ -39,8 +42,15 @@ export class Board extends React.Component {
 				    <tr>
 				    	<th>#</th>
 				    	<th>Camper name</th>
-				    	<th className={`${styles.order}`} onClick={(e) => this.click(e, 'recent')} >Points in past 30 days</th>
-				    	<th className={`${styles.sorted} ${styles.order}`} onClick={(e) => this.click(e, 'alltime')} >All time points</th>
+				    	<th className={this.state.sort == 'recent' ? styles.sorted : styles.order}
+				    		onClick={(e) => this.click('recent')} >
+				    			Points in past 30 days
+				    	</th>
+
+				    	<th className={this.state.sort == 'alltime' ? styles.sorted : styles.order} 
+				    		onClick={(e) => this.click('alltime')} >
+				    			All time points
+				    	</th>
 				    </tr>
 				</thead>
 				<tbody>
