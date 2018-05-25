@@ -1,0 +1,17 @@
+.title {
+    font-family: 'Roboto Condensed', sans-serif;
+    max-width: 245px;
+    color: #fff;
+   	background-color: #ff7171;
+    font-size: 50px;
+    margin-top: 0;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 800px){
+
+    .title {
+    	max-width: none;
+    }
+    
+}

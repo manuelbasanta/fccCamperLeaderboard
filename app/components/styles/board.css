@@ -1,0 +1,31 @@
+table {
+	font-family: 'Roboto Condensed', sans-serif;
+	min-width: 500px;
+	margin-top: -2px;
+}
+
+th {
+	font-weight: normal;
+}
+
+.order:hover {
+	cursor: pointer;
+}
+
+.sorted {
+	font-weight: bold;
+}
+
+.sorted:after {
+    content: "  \25bc";
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 800px){
+
+    table{
+    	min-width: 0;
+    	margin-top: 0;
+    }
+    
+}
