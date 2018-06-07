@@ -1,15 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles/row.css' 
 
-export class Row extends React.Component {
-	render () {
+const Row = (props) => {
+
 		return (
 		    <tr>
-		    	<td>{this.props.position}</td>
-		    	<td>{this.props.data.username}</td>
-		    	<td>{this.props.data.recent}</td>
-		    	<td>{this.props.data.alltime}</td>
+		    	<td>{props.position}</td>
+		    	<td>{props.data.username}</td>
+		    	<td>{props.data.recent}</td>
+		    	<td>{props.data.alltime}</td>
 		    </tr>
 		);
-	}
+
 }
+
+Row.propTypes = {
+	position: PropTypes.number,
+	data: PropTypes.object
+}
+
+export default Row;

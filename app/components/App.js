@@ -1,6 +1,6 @@
 import React from 'react';
-import { Title } from './Title';
-import { Board } from './Board';
+import Title from './Title';
+import Board from './Board';
 import styles from './styles/app.css';
 
 const api = 'https://fcctop100.herokuapp.com/api/fccusers/top/';

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Row } from './Row';
+import PropTypes from 'prop-types';
+import Row  from './Row';
 import styles from './styles/board.css';
 
-export class Board extends React.Component {
+class Board extends React.Component {
 
 	constructor (props) {
 		super(props);
@@ -11,13 +12,13 @@ export class Board extends React.Component {
 			sort: 'alltime'
 		}
 
-		this.click = this.click.bind(this);
+		//this.click = this.click.bind(this);
 	}
 
-	click (sort) {
+	handleClick (sort) {
 
 		if(this.state.sort != sort) {
-			this.setState({sort: sort});
+			this.setState({sort});
 			this.props.onclick(sort);
 		}
 		
@@ -29,11 +30,11 @@ export class Board extends React.Component {
 		if (this.props.loading) {
 			tbody = (
 					<tr>
-        				<td align="center" colspan="4">Loading...</td>
+        				<td align="center" colSpan="4">Loading...</td>
     				</tr>
     			);
 		} else {
-			tbody = this.props.leaderboard.map((element, i ) => < Row data={element} position={i}/>);
+			tbody = this.props.leaderboard.map((element, i ) => < Row data={element} position={i} key={'tr_' + i} />);
 		}
 
 		return (
@@ -43,12 +44,12 @@ export class Board extends React.Component {
 				    	<th>#</th>
 				    	<th>Camper name</th>
 				    	<th className={this.state.sort == 'recent' ? styles.sorted : styles.order}
-				    		onClick={(e) => this.click('recent')} >
+				    		onClick={(e) => this.handleClick('recent')} >
 				    			Points in past 30 days
 				    	</th>
 
 				    	<th className={this.state.sort == 'alltime' ? styles.sorted : styles.order} 
-				    		onClick={(e) => this.click('alltime')} >
+				    		onClick={(e) => this.handleClick('alltime')} >
 				    			All time points
 				    	</th>
 				    </tr>
@@ -60,3 +61,11 @@ export class Board extends React.Component {
 		);
 	}
 }
+
+Board.propTypes = {
+	onclick: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
+	leaderboard: PropTypes.array.isRequired
+}
+
+export default Board;
